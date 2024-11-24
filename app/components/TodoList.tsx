@@ -6,14 +6,15 @@ interface TodoListProps{
     todos: TodoItemT[];
     toggleTodo: (id: number) => void
     deleteTodo: (id: number) => void
+    updateTodo: (id:number, newText:string)=>void
 }
 
-const TodoList = ({todos,toggleTodo, deleteTodo}:TodoListProps) => {
+const TodoList = ({todos,toggleTodo, deleteTodo, updateTodo}:TodoListProps) => {
   return (
     <ul className='space-y-2'>
         {todos.map((todo)=>(
 
-            <TodoItemComponent key={todo.id} todo={todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+            <TodoItemComponent key={todo.id} todo={todo} toggleTodo={toggleTodo} deleteTodo={deleteTodo} updateTodo={updateTodo} />
         ))
              
         }

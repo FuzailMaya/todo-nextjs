@@ -6,7 +6,6 @@ import CreateTodo from "./components/CreateTodo"
 
 export default function Home() {
   const[todos,setTodos]=useState<TodoItemT[]>([])
-  let todoId=1;
  
   const addTodo = (text: string) => {
     const newTodo:TodoItemT={
@@ -26,6 +25,12 @@ export default function Home() {
       todos.filter((todo)=> todo.id!==id)
     )
   }
+
+  const updateTodo=(id:number, newText:string)=>{
+    setTodos(
+      todos.map((todo)=> todo.id===id ? {...todo, text:newText}: todo )
+    )
+  }
  
  
 
@@ -35,7 +40,7 @@ export default function Home() {
       <div className="container mx-auto max-w-md">
         <h1 className="text-3xl font-bold mb-4 text-center">Todo App</h1>
         <CreateTodo addTodo={addTodo} />
-        <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+        <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} updateTodo={updateTodo}/>
       </div>
     </main>
   );
